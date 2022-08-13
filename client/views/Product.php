@@ -87,7 +87,7 @@
                             <div class="produt-variants-size mb-2">
                                 <div class="produt-variants-size">
                                     <?php foreach($data_loai as $val_l){?>
-                                        <a href="?ctrl=Product<?='&id='.$val_l['id_loai'] ?>" class="btn btn-warning <?= $val_l['loai']==$data['loai'] ? '' : 'btn-outline-dark'?>">
+                                        <a href="?ctrl=Product<?='&id='.$val_l['id_loai'] ?>" class="btn  <?= $val_l['loai']==$data['loai'] ? 'btn-warning' : 'btn-outline-dark'?>">
                                             <?= $val_l['loai'] ?>
                                         </a>
                                     <?php } ?>
@@ -97,7 +97,7 @@
                             <span>Màu sắc</span>
                             <div class="produt-variants-size">
                                 <?php foreach($data_mau as $val_m){?>
-                                    <a href="?ctrl=Product<?='&id='.$val_m['id_loai'] ?>" class="btn btn-warning <?= $val_m['ma_mau']==$data['ma_mau'] ? '' : 'btn-outline-dark'?>">
+                                    <a href="?ctrl=Product<?='&id='.$val_m['id_loai'] ?>" class="btn  <?= $val_m['ma_mau']==$data['ma_mau'] ? 'btn-warning' : 'btn-outline-dark'?>">
                                         <?= $val_m['ten_mau'] ?>
                                     </a>
                                 <?php } ?>
@@ -118,7 +118,7 @@
                                 </div>
                                 <button class="add-to-cart" <?= $data['so_luong']> 0 ? '' : 'disabled' ?>
                                     type="submit">
-                                    <?php echo $data['so_luong'] > 1 ? "Thêm vào giỏ" : 'Hết hàng' ?>
+                                    <?php echo $data['so_luong'] > 0 ? "Thêm vào giỏ" : 'Hết hàng' ?>
                                 </button>
                             </form>
                         </div>

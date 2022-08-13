@@ -49,19 +49,19 @@
                                 <div class="row">
                                     <div class="col-md-12 mb-20">
                                         <span>Họ và tên</span><span class="text-danger">*</span>
-                                        <input class="mb-0" name="Ho_Ten" id="name" type="text"  placeholder="Họ và tên">
+                                        <input class="mb-0" name="ho_ten" id="name" required type="text"  placeholder="Họ và tên">
                                     </div>
                                     <div class="col-md-12 mb-20">
                                         <span>Email</span><span class="text-danger">*</span>
-                                        <input class="mb-0" name="Email" id="email" type="Email"  placeholder="Email*">
+                                        <input class="mb-0" name="email" id="email" required type="Email"  placeholder="Email*">
                                     </div>
                                     <div class="col-md-6 mb-20">
                                         <span>Mật khẩu</span><span class="text-danger">*</span>
-                                        <input class="mb-0" name="Password" id="password" type="password" placeholder="Mật khẩu">
+                                        <input class="mb-0" name="password" id="password" required type="password" placeholder="Mật khẩu">
                                     </div>
                                     <div class="col-md-6 mb-20">
                                         <span>Nhập lại mật khẩu</span><span class="text-danger">*</span>
-                                        <input class="mb-0" name="re_Password" id="re_password"  type="password"
+                                        <input class="mb-0" name="re_password" id="re_password" required type="password"
                                             placeholder="Nhập lại mật khẩu">
                                     </div>
                                     <div class="col-12">

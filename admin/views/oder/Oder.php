@@ -6,7 +6,7 @@
         </h1>
         <ol class="breadcrumb">
             <li class="active">
-                <i class="fa fa-fw fa-sliders"></i> Đơn hàng/Danh sách đơn hàng
+                <i class="fa fa-shopping-cart"></i> Đơn hàng/Danh sách đơn hàng
             </li>
         </ol>
     </div>
@@ -43,8 +43,8 @@
                             <thead>
                                 <tr>
                                     <td>STT</td>
-                                    <td>ID User</td>
-                                    <td>ID sản phẩm</td>
+                                    <td>Mã đơn hàng</td>
+                                    <td>Mã sản phẩm</td>
                                     <td>Tên sản phẩm</td>
                                     <td>Màu</td>
                                     <td>Số lượng</td>
@@ -62,23 +62,33 @@
                                 ?>
                                 <tr>
                                     <td width="40px"><?php echo $stt ?></td>
-                                    <td><?php echo $value['id_User'] ?></td> 
-                                    <td><?php echo $value['id_SP'] ?></td> 
-                                    <td><?php echo $value['Ten_SP'] ?></td>        
-                                    <td><?php echo $value['Mau'] ?></td>
-                                    <td><?php echo $value['So_Luong'] ?></td>   
-                                    <td><?php echo currency_format($value['Gia']) ?></td>   
-                                    <td><?php echo $value['Thanh_Toan']==0 ? "Đã thanh toán" : "Chưa thanh toán" ?></td>   
-                                    <td><?php echo $value['Thoi_Gian_DH'] ?></td>    
+                                    <td>
+                                        <a href="index.php?ctrl=oder/Info&act=edit&id=<?= $value['id'] ?>" >
+                                            <?php echo $value['ma_dh'] ?>
+                                        </a>
+                                    </td>
+                                    <td><?php echo $value['ma_sp'] ?></td>
+                                    <td><?php echo $value['ten_sp'] ?></td>
+                                    <td><?php echo $value['mau'] ?></td>
+                                    <td><?php echo $value['so_luong'] ?></td>
+                                    <td><?php echo currency_format($value['gia']) ?></td>
+                                    <td><?php echo currency_format($value['thanh_tien']) ?></td>
+                                    <td><?php echo $value['thoi_gian_dh'] ?></td>
                                     <td>
                                         <select name="Tinh_Trang" class="form-control" onchange="location = this.value;">
                                             <?php foreach($dataTT as $val){ ?>
-                                                <option value="index.php?ctrl=oder/Oder&act=do_edit&id=<?php echo $value['id'] ?>&id_tt=<?php echo $val['id'] ?>" <?php echo $value['id_Tinh_Trang']==$val['id'] ? 'selected=selected' : '' ?> >
-                                                <?php echo $val['Mo_Ta'] ?>
+                                                <option value="index.php?ctrl=oder/Oder&act=do_edit&id=<?php echo $value['id'] ?>&id_tt=<?php echo $val['id'] ?>" <?php echo $value['id_tinh_trang']==$val['id'] ? 'selected=selected' : '' ?> >
+                                                <?php echo $val['mo_ta'] ?>
                                                 </option>
                                             <?php } ?>
                                         </select>
                                     </td>
+                                    <td>
+                                        <a href="index.php?ctrl=oder/Info&act=edit&id=<?= $value['id'] ?>" class="btn btn-info">
+                                            Xem thêm
+                                        </a>
+                                    </td>
+
                                 </tr>
                                 <?php } ?>
                             </tbody>

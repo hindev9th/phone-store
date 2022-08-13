@@ -1897,8 +1897,8 @@ textarea:focus {
 
 .cart-item-count {
 	position: absolute;
-	top: -25px;
-	left: -60px;
+	top: -10px;
+	left: -10px;
 	display: block;
 	overflow: hidden;
 	min-width: 26px;

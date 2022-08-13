@@ -169,7 +169,7 @@
                 <div class="row">
                     <div class="col-lg-4 col-md-4 text-center">
                         <div class="single-banner">
-                            <a href="?ctrl=Product_List&act=sp&th=SS">
+                            <a href="?ctrl=Product_List&act=1&th=3">
                                 <img src="public/Upload/Slider/samsung-390-210-390x210.png" alt="Li's Static Banner">
                             </a>
                         </div>
@@ -177,7 +177,7 @@
 
                     <div class="col-lg-4 col-md-4 text-center pt-xs-30">
                         <div class="single-banner">
-                            <a href="?ctrl=Product_List&act=sp&th=IP">
+                            <a href="?ctrl=Product_List&act=1&th=1">
                                 <img src="public/Upload/Slider/appleDT-390x210-1.png" alt="Li's Static Banner">
                             </a>
                         </div>
@@ -185,7 +185,7 @@
 
                     <div class="col-lg-4 col-md-4 text-center pt-xs-30">
                         <div class="single-banner">
-                            <a href="?ctrl=Product_List&act=sp&dm=PK&th=HW">
+                            <a href="?ctrl=Product_List&act=sp&dm=2&th=2">
                                 <img src="public/Upload/Slider/huawei.jpg" alt="Li's Static Banner">
                             </a>
                         </div>

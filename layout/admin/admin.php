@@ -109,7 +109,7 @@
                                 <a href="index.php?ctrl=oder/Oder">Danh sách đơn hàng</a>
                             </li>
                             <li>
-                                <a href="index.php?ctrl=oder/Unpaid">Đơn hàng chưa thanh toán</a>
+                                <a href="index.php?ctrl=oder/Unpaid">Đơn hàng đã giao</a>
                             </li>
                             <li>
                                 <a href="index.php?ctrl=oder/GiveBack">Đơn hàng bị trả lại</a>
@@ -124,17 +124,6 @@
                             </li>
                             <li>
                                 <a href="index.php?ctrl=users/Info">Danh sách khách hàng</a>
-                            </li>
-                        </ul>
-                    </li>
-                    <li>
-                        <a href="javascript:0;" data-toggle="collapse" data-target="#kho"><i class="fa fa-database"></i> Kho <i class="fa fa-fw fa-caret-down"></i></a>
-                        <ul id="kho" class="collapse">
-                            <li>
-                                <a href="index.php?ctrl=warehouse/Add">Nhập</a>
-                            </li>
-                            <li>
-                                <a href="index.php?ctrl=warehouse/History">Lịch sử</a>
                             </li>
                         </ul>
                     </li>

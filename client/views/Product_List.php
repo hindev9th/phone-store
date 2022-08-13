@@ -70,7 +70,7 @@
                                                 <!-- single-product-wrap start -->
                                                 <div class="single-product-wrap">
                                                     <div class="product-image">
-                                                        <a href="?ctrl=Product<?php echo'&id='.$values['id'] ?>">
+                                                        <a href="?ctrl=Product<?php echo'&id='.$values['id_loai'] ?>">
                                                             <img src="public/Upload/Products/<?php echo $values['anh'] ?>"
                                                                 alt="Li's Product Image">
                                                         </a>
@@ -95,7 +95,7 @@
                                                                 </div>
                                                             </div>
                                                             <h4><a class="product_name"
-                                                                    href="?ctrl=Product<?php echo '&id='.$values['id'] ?>"><?php echo $values['ten_sp'] ?></a>
+                                                                    href="?ctrl=Product<?php echo '&id='.$values['id_loai'] ?>"><?php echo $values['ten_sp'] ?></a>
                                                             </h4>
                                                             <div class="price-box">
                                                                 <span class="new-price"><?php echo currency_format($values['gia']) ?></span>
@@ -104,13 +104,10 @@
                                                         <div class="add-actions">
                                                             <ul class="add-actions-link">
                                                                 <li class="add-cart active"><a
-                                                                        href="?ctrl=Product_List&act=add&dm=gio_hang<?php echo '&id='.$values['id'].'&loai='.$values['id_loai'] ?>">Thêm vào giỏ</a></li>
-                                                                <li><a class="links-details" href="?ctrl=Product_List&act=add&dm=yeu_thich&id=<?php echo $values['id'] ?>"><i
+                                                                        href="?ctrl=Product_List&act=add&dm=gio_hang<?php echo '&id='.$values['id_loai'] ?>">Thêm vào giỏ</a></li>
+                                                                <li><a class="links-details" href="?ctrl=Product_List&act=add&dm=yeu_thich&id=<?php echo $values['id_loai'] ?>"><i
                                                                             class="fa fa-heart-o"></i></a></li>
-                                                                <li><a href="#" title="quick view"
-                                                                        class="quick-view-btn" data-toggle="modal"
-                                                                        data-target="#exampleModalCenter<?php echo $values['id'] ?>"><i
-                                                                            class="fa fa-eye"></i></a></li>
+
                                                             </ul>
                                                         </div>
                                                     </div>
@@ -129,7 +126,7 @@
                                             <div class="row product-layout-list">
                                                 <div class="col-lg-3 col-md-5 ">
                                                     <div class="product-image">
-                                                        <a href="?ctrl=Product<?php echo '&id='.$values['id'] ?>">
+                                                        <a href="?ctrl=Product<?php echo '&id='.$values['id_loai'] ?>">
                                                             <img src="public/Upload/Products/<?php echo $values['anh'] ?>"
                                                                 alt="Li's Product Image">
                                                         </a>
@@ -155,7 +152,7 @@
                                                                 </div>
                                                             </div>
                                                             <h4><a class="product_name"
-                                                                    href="?ctrl=Product<?php echo '&id='.$values['id'] ?>"><?php echo $values['ten_sp'] ?></a></h4>
+                                                                    href="?ctrl=Product<?php echo '&id='.$values['id_loai'] ?>"><?php echo $values['ten_sp'] ?></a></h4>
                                                             <div class="price-box">
                                                                 <div class="price-box">
                                                                     <span class="new-price"><?php echo currency_format($values['gia']) ?></span>
@@ -173,13 +170,10 @@
                                                 <div class="col-lg-4">
                                                     <div class="shop-add-action mb-xs-30">
                                                         <ul class="add-actions-link">
-                                                            <li class="add-cart"><a href="?ctrl=Product_List&act=add&dm=gio_hang&dm=gio_hang<?php echo '&id='.$values['id'].'&loai='.$values['id_loai'] ?>">Thêm vào giỏ</a></li>
-                                                            <li class="wishlist"><a href="?ctrl=Product_List&act=add&dm=gio_hang&dm=yeu_thich&id=<?php echo $values['id'] ?>"><i
+                                                            <li class="add-cart"><a href="?ctrl=Product_List&act=add&dm=gio_hang&dm=gio_hang<?php echo '&id='.$values['id_loai'] ?>">Thêm vào giỏ</a></li>
+                                                            <li class="wishlist"><a href="?ctrl=Product_List&act=add&dm=gio_hang&dm=yeu_thich&id=<?php echo $values['id_loai'] ?>"><i
                                                                         class="fa fa-heart-o"></i>Thêm vào yêu thích</a>
                                                             </li>
-                                                            <li><a class="quick-view" data-toggle="modal"
-                                                                    data-target="#exampleModalCenter<?php echo $values['id'] ?>" href="#"><i
-                                                                        class="fa fa-eye"></i>Xem</a></li>
                                                         </ul>
                                                     </div>
                                                 </div>

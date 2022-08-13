@@ -202,12 +202,13 @@
                                             </div>
                                         </div>
                                         <div class="hm-minicart-trigger">
+                                            <span class="cart-item-count">
+                                                    <?php echo isset($_SESSION['gio_hang']) ? count($_SESSION['gio_hang']) : 0 ?>
+                                                </span>
                                             <span class="item-icon"></span>
                                             <span class="item-text">
                                                 <?php echo currency_format($tong) ?>
-                                                <span class="cart-item-count">
-                                                    <?php echo isset($_SESSION['gio_hang']) ? count($_SESSION['gio_hang']) : 0 ?>
-                                                </span>
+
                                             </span>
                                         </div>
                                     </li>
