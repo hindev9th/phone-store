@@ -7,15 +7,18 @@
             $id = isset($_GET['id']) ? $_GET['id'] : '';
             switch ($act) {
                 case 'add':
-                    $ten = isset($_POST['Ten']) ? $_POST['Ten'] : '';
-                    $tinh_Trang = isset($_POST['Tinh_Trang']) ? $_POST['Tinh_Trang'] : '';
+                    $url = isset($_POST['url']) ? $_POST['url'] : '';
+                    $tieu_de = isset($_POST['tieu_de']) ? $_POST['tieu_de'] : '';
+                    $mo_ta = isset($_POST['mo_ta']) ? $_POST['mo_ta'] : '';
+                    $vi_tri = isset($_POST['vi_tri']) ? $_POST['vi_tri'] : '';
+                    $tinh_trang = isset($_POST['tinh_trang']) ? $_POST['tinh_trang'] : '';
 
                     if(!isset($_FILES['Image']['name']) || empty($_FILES['Image']['name']) ){
                         ?> <script> window.alert("Chưa có dữ liệu thêm ảnh") </script> <?php
                     }else{
                         $anh = time().$_FILES['Image']['name'];
                         move_uploaded_file($_FILES['Image']['tmp_name'],"../public/Upload/Slider/".time().$_FILES['Image']['name']);
-                        $this->Model->execute("insert into slider(id, Ten_Slider, Anh, Tinh_Trang) values ('','$ten','$anh','$tinh_Trang')");
+                        $this->Model->execute("insert into slider(id, url,tieu_de,mo_ta, anh, tinh_trang,vi_tri) values ('','$url','$tieu_de','$mo_ta','$anh','$tinh_trang','$vi_tri')");
 
                         ?> <script> window.alert("Thêm thành công") </script> <?php  
                     }
@@ -28,22 +31,29 @@
                     break;
 
                 case 'do_edit':
-                    $ten = isset($_POST['Ten']) ? $_POST['Ten'] : '';
-                    $tinh_Trang = isset($_POST['Tinh_Trang']) ? $_POST['Tinh_Trang'] : '';
+                    $url = isset($_POST['url']) ? $_POST['url'] : '';
+                    $tieu_de = isset($_POST['tieu_de']) ? $_POST['tieu_de'] : '';
+                    $mo_ta = isset($_POST['mo_ta']) ? $_POST['mo_ta'] : '';
+                    $vi_tri = isset($_POST['vi_tri']) ? $_POST['vi_tri'] : '';
+                    $tinh_trang = isset($_POST['tinh_trang']) ? $_POST['tinh_trang'] : '';
                     if(isset($_GET['tt'])){
                         $tt = $_GET['tt'];
-                        $this->Model->execute("update slider set Tinh_Trang='$tt' where id = '$id'");
-                    }else{
+                        $this->Model->execute("update slider set tinh_trang='$tt' where id = '$id'");
+                    }else if (isset($_GET['vt'])){
+                        $vt = $_GET['vt'];
+                        $this->Model->execute("update slider set vi_tri='$vt' where id = '$id'");
+                    }
+                    else{
                         if(!isset($_FILES['Image']['name']) || empty($_FILES['Image']['name']) ){
-                            $this->Model->execute("update slider set Ten_Slider='$ten',Tinh_Trang='$tinh_Trang' where id = '$id'");
+                            $this->Model->execute("update slider set url='$url',tieu_de='$tieu_de',mo_ta='$mo_ta',tinh_trang='$tinh_trang', vi_tri='$vi_tri' where id = '$id'");
                             ?> <script> window.alert("Sửa thành công") </script> <?php  
                         }else{
                             $check = $this->Model->fetchOne("Select Anh from slider where id = '$id'");
-                            file_exists("../public/Upload/Slider/".$check['Anh']) ? unlink("../public/Upload/Slider/".$check['Anh']) : '';
+                            file_exists("../public/Upload/Slider/".$check['anh']) ? unlink("../public/Upload/Slider/".$check['anh']) : '';
 
                             $anh = time().$_FILES['Image']['name'];
                             move_uploaded_file($_FILES['Image']['tmp_name'],"../public/Upload/Slider/".time().$_FILES['Image']['name']);
-                            $this->Model->execute("update slider set Ten_Slider='$ten',Anh='$anh',Tinh_Trang='$tinh_Trang' where id = '$id'");
+                            $this->Model->execute("update slider set url='$url',tieu_de='$tieu_de',mo_ta='$mo_ta',anh='$anh',tinh_trang='$tinh_trang', vi_tri='$vi_tri' where id = '$id'");
 
                             ?> <script> window.alert("Sửa thành công") </script> <?php  
                         }
@@ -52,8 +62,8 @@
                     break;
 
                 case 'delete':
-                    $check = $this->Model->fetchOne("Select Anh from slider where id = '$id'");
-                    file_exists("../public/Upload/Slider/".$check['Anh']) ? unlink("../public/Upload/Slider/".$check['Anh']) : '';
+                    $check = $this->Model->fetchOne("Select anh from slider where id = '$id'");
+                    file_exists("../public/Upload/Slider/".$check['anh']) ? unlink("../public/Upload/Slider/".$check['anh']) : '';
                     $this->Model->execute("delete from slider where id = '$id'");
 
                     ?> <script> window.alert("Xóa thành công") </script> <?php
@@ -62,7 +72,7 @@
                     break;
                 case 'search':
                     $sr = isset($_POST['search']) ? $_POST['search'] : "";
-                    $data = $this->Model->fetch("select * from slider where Ten_Slider like '%$sr%' order by id desc limit 25");
+                    $data = $this->Model->fetch("select * from slider where url like '%$sr%' or tieu_de like '%$sr%'  order by id desc limit 25");
                     break;
                 case 'select':
                     $sl = isset($_GET['sl']) ? $_GET['sl'] : "";

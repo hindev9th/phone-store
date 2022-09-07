@@ -43,9 +43,11 @@
                             <tr>
                                 <td>STT</td>
                                 <td width="200px">Ảnh</td>
-                                <td>Tên</td>
+                                <td >Đường dẫn</td>
+                                <td>Tiêu đề</td>
+                                <td>Mô tả</td>
+                                <td>Vị trí</td>
                                 <td width="100px">Tình trạng</td>
-                                <td width="200px">Hành Động</td>
                             </tr>
                             <?php
                                 $stt=0;
@@ -55,12 +57,20 @@
                             ?>
                             <tr>
                                 <td width="40px"><?php echo $stt ?></td>
-                                <td><img src="../public/Upload/Slider/<?php echo $value['Anh'] ?>" alt="" width="200px"></td>
-                                <td><?php echo $value['Ten_Slider'] ?></td>
+                                <td><img src="../public/Upload/Slider/<?php echo $value['anh'] ?>" alt="" width="200px"></td>
+                                <td><?php echo $value['url'] ?></td>
+                                <td><?php echo $value['tieu_de'] ?></td>
+                                <td><?php echo $value['mo_ta'] ?></td>
                                 <td>
-                                    <select name="Tinh_Trang" class="form-control" onchange="location = this.value;">
-                                        <option value="index.php?ctrl=slider/Slider&act=do_edit&id=<?php echo $value['id'] ?>&tt=0" <?php echo $value['Tinh_Trang']==0 ? 'selected=selected' : '' ?> >Bật</option>
-                                        <option value="index.php?ctrl=slider/Slider&act=do_edit&id=<?php echo $value['id'] ?>&tt=1" <?php echo $value['Tinh_Trang']==1 ? 'selected=selected' : '' ?> >Tắt</option>
+                                    <select name="vi_tri" class="form-control" onchange="location = this.value;">
+                                        <option value="index.php?ctrl=slider/Slider&act=do_edit&id=<?php echo $value['id'] ?>&vt=0" <?php echo $value['vi_tri']==0 ? 'selected=selected' : '' ?> >Đầu trang</option>
+                                        <option value="index.php?ctrl=slider/Slider&act=do_edit&id=<?php echo $value['id'] ?>&vt=1" <?php echo $value['vi_tri']==1 ? 'selected=selected' : '' ?> >Giữa trang</option>
+                                    </select>
+                                </td>
+                                <td>
+                                    <select name="tinh_trang" class="form-control" onchange="location = this.value;">
+                                        <option value="index.php?ctrl=slider/Slider&act=do_edit&id=<?php echo $value['id'] ?>&tt=0" <?php echo $value['tinh_trang']==0 ? 'selected=selected' : '' ?> >Bật</option>
+                                        <option value="index.php?ctrl=slider/Slider&act=do_edit&id=<?php echo $value['id'] ?>&tt=1" <?php echo $value['tinh_trang']==1 ? 'selected=selected' : '' ?> >Tắt</option>
                                     </select>
                                 </td>
                                 <td>
@@ -81,13 +91,19 @@
         <div class="panel panel-primary">
             <div class="panel-heading">Sửa Slider</div>
             <div class="panel-body">
-                <form action="index.php?ctrl=slider/Slider&act=do_edit" method="post" enctype="multipart/form-data">
-                    <img src="../public/Upload/Slider/<?php echo $e_data['Anh'] ?>" alt="" id="output" class="output" width="500px">
+                <form action="index.php?ctrl=slider/Slider&act=do_edit&id=<?= $e_data['id'] ?>" method="post" enctype="multipart/form-data">
+                    <img src="../public/Upload/Slider/<?php echo $e_data['anh'] ?>" alt="" id="output" class="output" width="500px">
                     <input type="file" name="Image" accept="image/*" onchange="loadFile(event)" style="margin-top:10px;">
-                    <input type="text" name="Ten" placeholder="Tên" value="<?php echo $e_data['Ten_Slider'] ?>" require class="form-control" style="margin-top:10px;">
-                    <select name="Tinh_Trang" class="form-control" style="margin-top:10px;">
-                        <option value="0" <?php echo $e_data['Tinh_Trang']==1 ? 'selected=selected' : '' ?> >Bật</option>
-                        <option value="1" <?php echo $e_data['Tinh_Trang']==1 ? 'selected=selected' : '' ?> >Tắt</option>
+                    <input type="text" name="url" placeholder="Đường dẫn" value="<?php echo $e_data['url'] ?>" require class="form-control" style="margin-top:10px;">
+                    <input type="text" name="tieu_de" placeholder="Tiêu đề" value="<?php echo $e_data['tieu_de'] ?>" require class="form-control" style="margin-top:10px;">
+                    <input type="text" name="mo_ta" placeholder="Mô tả" value="<?php echo $e_data['mo_ta'] ?>" require class="form-control" style="margin-top:10px;">
+                    <select name="vi_tri" class="form-control" style="margin-top:10px;">
+                        <option value="0" <?php echo $e_data['vi_tri']==0 ? 'selected=selected' : '' ?> >Đầu trang</option>
+                        <option value="1" <?php echo $e_data['vi_tri']==1 ? 'selected=selected' : '' ?> >Giữa trang</option>
+                    </select>
+                    <select name="tinh_trang" class="form-control" style="margin-top:10px;">
+                        <option value="0" <?php echo $e_data['tinh_trang']==0 ? 'selected=selected' : '' ?> >Bật</option>
+                        <option value="1" <?php echo $e_data['tinh_trang']==1 ? 'selected=selected' : '' ?> >Tắt</option>
                     </select>
                     <input type="submit" value="Sửa" class="btn btn-primary" style="margin-top:10px;">
                     <a href="index.php?ctrl=slider/Slider" class="btn btn-primary" style="margin-top:10px;">Thoát</a>
@@ -103,10 +119,16 @@
                 <form action="index.php?ctrl=slider/Slider&act=add" method="post" enctype="multipart/form-data">
                     <img src="" alt="" id="output" class="output" width="500px">
                     <input type="file" name="Image" accept="image/*" onchange="loadFile(event)" style="margin-top:10px;">
-                    <input type="text" name="Ten" placeholder="Tên" require class="form-control" style="margin-top:10px;">
-                    <select name="Tinh_Trang" class="form-control" style="margin-top:10px;">
-                        <option value="0">Bật</option>
-                        <option value="1">Tắt</option>
+                    <input type="text" name="url" placeholder="Đường dẫn"  require class="form-control" style="margin-top:10px;">
+                    <input type="text" name="tieu_de" placeholder="Tiêu đề" require class="form-control" style="margin-top:10px;">
+                    <input type="text" name="mo_ta" placeholder="Mô tả"   class="form-control" style="margin-top:10px;">
+                    <select name="vi_tri" class="form-control" style="margin-top:10px;">
+                        <option value="0" >Đầu trang</option>
+                        <option value="1" >Giữa trang</option>
+                    </select>
+                    <select name="tinh_trang" class="form-control" style="margin-top:10px;">
+                        <option value="0" >Bật</option>
+                        <option value="1" >Tắt</option>
                     </select>
                     <input type="submit" value="Thêm" class="btn btn-primary" style="margin-top:10px;">
                 </form>

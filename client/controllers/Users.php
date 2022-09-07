@@ -10,8 +10,8 @@ class Users extends Controller{
                 include "client/views/user/account.php";
                 break;
             case 'order':
-                $email = isset($_SESSION['email']) ? $_SESSION['email'] : '';
-                $data = $this->Model->fetch("select * from don_hang where email = '$email'");
+                $user = isset($_SESSION['customer']) ? $_SESSION['customer'] : '';
+                $data = $this->Model->fetch("select * from don_hang where id_user = '".$user['id']."'");
                 include "client/views/user/order.php";
                 break;
             case 'update':

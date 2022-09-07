@@ -19,10 +19,10 @@
                     break;
                 case 'select':
                     $sl = isset($_GET['sl']) ? $_GET['sl'] : "";
-                    $data = $this->Model->fetch("select * from don_hang order by thoi_gian_dh desc limit $sl");
+                    $data = $this->Model->fetch("select * from don_hang order by id_tinh_trang desc limit $sl");
                     break;  
                 default:
-                    $data = $this->Model->fetch("SELECT * from don_hang order by thoi_gian_dh desc limit 25");
+                    $data = $this->Model->fetch("SELECT * from don_hang order by id_tinh_trang asc limit 25");
                 break;
                 
             }

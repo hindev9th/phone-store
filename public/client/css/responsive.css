@@ -661,12 +661,6 @@ Note: responsive.css, All Responsive CSS Style For This Theme Included In This F
 	.hm-wishlist {
 		margin-right: 15px;
 	}
-	.cart-item-count {
-		top: -30px;
-		left: -59px;
-		min-width: 26px;
-		font-size: 12px;
-	}
 	.cart-item-count.wishlist-item-count {
 		left: -10px;
 		top: -10px;
