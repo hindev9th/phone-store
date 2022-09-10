@@ -17,8 +17,8 @@
             parent::__construct();
 
             if (isset($_SESSION['admin'])) {
-                $username =$_SESSION['admin']['username'];
-                $check = $this->Model->fetchOne("select * from tb_admin where username='$username'");
+                $email =$_SESSION['admin']['email'];
+                $check = $this->Model->fetchOne("select * from tb_admin where email='$email'");
 
                 $contact = $this->Model->count("select * from tb_contact where seen = 0");
                 $ctrl = isset($_GET['ctrl']) ? "controllers/".$_GET['ctrl'].".php" : "controllers/Home.php";

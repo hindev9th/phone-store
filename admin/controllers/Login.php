@@ -5,19 +5,18 @@
             parent::__construct();
 
             if ($_SERVER['REQUEST_METHOD'] == "POST") {
-                $username = $_POST['Username'];
+                $email = $_POST['email'];
                 $password = $_POST['password'];
                 $thong_bao = "";
-                $check = $this->Model->fetchOne("select * from tb_admin where username='$username'");
+                $check = $this->Model->fetchOne("select * from tb_admin where email='$email'");
                 
-                if(isset($check['username'])){
+                if(isset($check['email'])){
                     if($check['password'] == MD5($password)){
 
                         $data = array(
                             'id' => $check['id'],
                             'ho_ten' => $check['ho_ten'],
                             'email' => $check['email'],
-                            'username' => $check['username']
                         );
                         $_SESSION['admin'] = $data;
                         header("location: index.php");

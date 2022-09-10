@@ -44,7 +44,7 @@ class Users extends Controller
 
                 $sql = "update tb_users set ho_ten='$ho_ten' , gioi_tinh='$gioi_tinh', ngay_sinh='$ngay_sinh', sdt='$sdt', email='$email', password='$password', dia_chi='$dia_chi', anh='$anh' where id='$id'";
                 $this->Model->execute($sql);
-//                echo "<meta http-equiv='refresh' content='0; URL=?ctrl=Users&atc=account'>";
+                echo "<meta http-equiv='refresh' content='0; URL=?ctrl=Users&atc=account'>";
                 break;
         }
 

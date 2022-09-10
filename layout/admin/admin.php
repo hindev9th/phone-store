@@ -77,9 +77,6 @@
                         <a href="index.php"><i class="fa fa-home"></i></i>Trang chủ</a>
                     </li>
                     <li>
-                        <a href="charts.html"><i class="fa fa-fw fa-bar-chart-o"></i>Thông số</a>
-                    </li>
-                    <li>
                         <a href="javascript:0;" data-toggle="collapse" data-target="#dm"><i class="fa fa-bookmark"></i> Danh mục <i class="fa fa-fw fa-caret-down"></i></a>
                         <ul id="dm" class="collapse">
                             <li>
@@ -95,9 +92,6 @@
                         <ul id="sp" class="collapse">
                             <li>
                                 <a href="index.php?ctrl=products/Add">Thêm sản phẩm</a>
-                            </li>
-                            <li>
-                                <a href="index.php?ctrl=products/Info">Thông tin sản phẩm</a>
                             </li>
                             <li>
                                 <a href="index.php?ctrl=products/Product">Danh sách</a>
@@ -125,7 +119,7 @@
                                 <a href="index.php?ctrl=users/Account">Danh sách quản trị</a>
                             </li>
                             <li>
-                                <a href="index.php?ctrl=users/Info">Danh sách khách hàng</a>
+                                <a href="index.php?ctrl=users/Customer">Danh sách khách hàng</a>
                             </li>
                         </ul>
                     </li>
@@ -133,7 +127,7 @@
                         <a href="index.php?ctrl=slider/Slider"><i class="fa fa-fw fa-sliders"></i>Slider</a>
                     </li>
                     <li>
-                        <a href="bootstrap-elements.html"><i class="fa fa-fw fa-phone"></i>Liên hệ</a>
+                        <a href="#"><i class="fa fa-fw fa-phone"></i>Liên hệ</a>
                     </li>
                     
                 </ul>

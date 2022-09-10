@@ -29,7 +29,7 @@
 					<img src ="..\public\admin\img\gp.png">
 				</div>
 				<form id="login" class="input-group" method="post">
-					<input type="text" name="Username" class="input-field" placeholder= "Username" repuired >
+					<input type="email" name="email" class="input-field" placeholder= "Email" repuired >
 					<input type="password" name="password" class="input-field" placeholder= "Mật khẩu" repuired >
 					<input type="checkbox" class = "chech-box"><Span>Ghi nhớ mật khẩu</span>
 					<input type="submit" name="sb_Dang_nhap" class="submit-btn btn-DN" value="Đăng nhập">
