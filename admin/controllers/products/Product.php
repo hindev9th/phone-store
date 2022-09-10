@@ -28,7 +28,7 @@
                     $data_th = $this->Model->fetch("select * from thuong_hieu ");
                     $data = $this->Model->fetchOne("select * from san_pham where id = '$id'");
                     $data_loai = $this->Model->fetch("select * from sp_loai where ma_sp = '".$data['ma_sp']."'");
-                    $data_img = $this->Model->fetch("select * from sp_images where ma_sp = '".$data['ma_sp']."'");
+                    $data_img = $this->Model->fetch("select * from sp_image where ma_sp = '".$data['ma_sp']."'");
                     include "views/products/Add.php";
                     break;
                 case 'select':

@@ -51,13 +51,31 @@
 
                         <h4 style="border-bottom: 1px solid rgba(0,0,0,0.1)">Mô tả sản phẩm</h4>
                         <div class="row">
-                            <textarea name="mo_ta" id="mo_ta" require class="form-control"
-                                      style="width:100%;  height:100px;" placeholder="Mô tả"></textarea>
+                            <?php if (isset($data)) : ?>
+                            <div id="presence-list-container" class="hidden" style="display: none"></div>
+                            <div class="card-body" id="sub-cart-mTa">
+                                <textarea name="mo_ta" id="noi_dung_mo_ta" class="form-control"><?= $data['mo_ta'] ?></textarea>
+                            </div>
+                            <?php else: ?>
+                            <div id="presence-list-container" class="hidden" style="display: none"></div>
+                            <div class="card-body" id="sub-cart-mTa">
+                                <textarea name="mo_ta" id="noi_dung_mo_ta" class="form-control"></textarea>
+                            </div>
+                            <?php endif; ?>
                         </div>
                         <h4 style="border-bottom: 1px solid rgba(0,0,0,0.1)">Images</h4>
                         <div class="row" id="box-img">
+                            <?php if (isset($data_img)) :
+                                foreach ($data_img as $data) {?>
+                                <div class="col-md-2">
+                                    <img src="../public/Upload/Products/<?= $data['anh'] ?>" alt="" width="100%">
+                                    <input type="file" name="images[]" require style="width:100%;  height:100px; margin-top:10px ; "/>
+                                </div>
+                            <?php  }
+                            endif; ?>
                             <div class="col-md-2">
-                                <input type="file" name="images[]" require style="width:100%;  height:100px;"/>
+                                <img src="../public/Upload/Products/" alt="" width="100%">
+                                <input type="file" name="images[]" require style="width:100%;  height:100px; margin-top:10px ; "/>
                             </div>
                         </div>
                         <div class="row" style="border-bottom: 1px solid rgba(0,0,0,0.1)">
@@ -188,17 +206,5 @@
         $('#btn-them').click(function () {
             $('#box-loai').append(loai);
         });
-
-
-        ClassicEditor
-            .create(document.querySelector('#mo_ta'))
-            .then(editor => {
-                console.log(editor);
-            })
-            .catch(error => {
-                console.error(error);
-            });
-
-
     </script>
 </div>
