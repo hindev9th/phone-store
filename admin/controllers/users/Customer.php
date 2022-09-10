@@ -1,61 +1,93 @@
 <?php
 
-    class Customer extends Controller{
-        public function __construct(){
-            parent:: __construct();          
-            $act = isset($_GET['act']) ? $_GET['act'] : "";
-            $id = isset($_GET['id']) ? $_GET['id'] : 0;  
-            $thong_bao = "";          
-            switch ($act) {
-                case 'info':
-                    $info = $this->Model->fetchOne("select * from tb_users where id_User=$id"); 
-                    $UserN = $this->Model->fetchOne("select * from users where id=$id");  
-                    break;
-                case 'edit':
-                    $recordd = $this->Model->fetchOne("select * from tb_users where id=$id");
-                    $data = $this->Model->fetch("SELECT * from tb_users order by id_User desc limit 25");
-                    break;
-                case 'do_edit':
-                    $Ho_Ten = $_POST['Ho_Ten'];
-                    $Gioi_Tinh = $_POST['GioiTinh'];
-                    $Ngay_Sinh =$_POST['Ngay_Sinh'];
-                    $Sdt = $_POST['Sdt'];
-                    $Email = $_POST['Email'];
-                    $Dia_Chi = $_POST['Dia_Chi'];
-                    $Image = '';
-                    if(isset($_FILES['Image']['name']) && !empty($_FILES['Image']['name'])){
-                        $check = $this->Model->fetchOne("select * from tb_users where id_user=$id"); 
-                        file_exists("../public/Upload/Avatar/".$check['Anh']) ? unlink("../public/Upload/Avatar/".$check['Anh']) : '';
+class Customer extends Controller
+{
+    public function __construct()
+    {
+        parent:: __construct();
+        $act = $_GET['act'] ?? "";
+        $id = $_GET['id'] ?? 0;
+        $thong_bao = "";
+        switch ($act) {
+            case 'add':
+                include "views/users/add.php";
+                break;
+            case 'save_new':
+                $check = $this->Model->fetch("select * from tb_users");
+                $ho_ten = $_POST['ho_ten'] ?? '';
+                $gioi_tinh = $_POST['gioi_tinh'] ?? '';
+                $ngay_sinh = $_POST['ngay_sinh'] ?? '';
+                $sdt = $_POST['sdt'] ?? '';
+                $email = $_POST['email'] ?? '';
+                $password = md5($_POST['password'] ?? '');
+                $dia_chi = $_POST['dia_chi'] ?? '';
+                $anh = '';
+                if (!empty($_FILES['img_avt']['name'])) {
+                    $anh = time() . $_FILES['img_avt']['name'];
+                    move_uploaded_file($_FILES['img_avt']['tmp_name'], "../public/Upload/Avatar/" . $anh);
+                }
 
-                        $Image = time().$_FILES['Image']['name'];
-                        move_uploaded_file($_FILES['Image']['tmp_name'],"../public/Upload/Avatar/".time().$_FILES['Image']['name']);
-                        $Sql = "update tb_users set Ho_Ten = '$Ho_Ten',Gioi_Tinh='$Gioi_Tinh',Nam_Sinh= '$Ngay_Sinh',Sdt = '$Sdt',Email ='$Email',Dia_Chi ='$Dia_Chi',Anh = '$Image' where id_User='$id'";
-                    }else{
-                        $Sql = "update tb_users set Ho_Ten = '$Ho_Ten',Gioi_Tinh='$Gioi_Tinh',Nam_Sinh= '$Ngay_Sinh',Sdt = '$Sdt',Email ='$Email',Dia_Chi ='$Dia_Chi' where id_User='$id'";
+                $can = false;
+                foreach ($check as $value){
+                    $value['email'] != $email ? $can = true : $can = false;
+                }
+                if($can){
+                    $sql = "INSERT INTO `tb_users`(`id`, `ho_ten`, `gioi_tinh`, `ngay_sinh`, `sdt`, `email`, `password`, `dia_chi`, `anh`) 
+                            VALUES ('','$ho_ten','$gioi_tinh','$ngay_sinh','$sdt','$email','$password','$dia_chi','$anh')";
+                    $this->Model->execute($sql);
+                    echo "<meta http-equiv='refresh' content='0; URL=index.php?ctrl=users/Customer'>";
+                }else{
+                    echo "<script>alert('Email đã tồn tại!. Vui lòng kiểm tra lại')</script>";
+                }
+                break;
+            case 'edit':
+                $data = $this->Model->fetchOne("SELECT * from tb_users where id = '$id'");
+                include "views/users/add.php";
+                break;
+            case 'save':
+                $check = $this->Model->fetchOne("select * from tb_users where id = '$id'");
+                $ho_ten = $_POST['ho_ten'] ?? '';
+                $gioi_tinh = $_POST['gioi_tinh'] ?? '';
+                $ngay_sinh = $_POST['ngay_sinh'] ?? '';
+                $sdt = $_POST['sdt'] ?? '';
+                $email = $_POST['email'] ?? '';
+                $password = md5($_POST['password'] ?? '');
+                $dia_chi = $_POST['dia_chi'] ?? '';
+                $anh = $check['anh'];
+                if (!empty($_FILES['img_avt']['name'])) {
+                    if (file_exists("../public/Upload/Avatar/" . $anh)) {
+                        unlink("../public/Upload/Avatar/" . $anh);
                     }
 
-                    $this->Model->execute($Sql);
+                    $anh = time() . $_FILES['img_avt']['name'];
+                    move_uploaded_file($_FILES['img_avt']['tmp_name'], "../public/Upload/Avatar/" . $anh);
+                }
 
-                    echo "<meta http-equiv='refresh' content='0; URL=index.php?ctrl=users/Info'>";
-                    break;
-
-                case 'search':
-                    $sr = isset($_POST['search']) ? $_POST['search'] : "";
-                    $data = $this->Model->fetch("select * from tb_users where Ho_Ten like '%$sr%'  OR Sdt like '%$sr%' OR Email like '%$sr%' OR Dia_Chi like '%$sr%' order by id desc limit 25");
-                    break;
-                case 'select':
-                    $sl = isset($_GET['sl']) ? $_GET['sl'] : "";
-                    $data = $this->Model->fetch("select * from tb_users order by id desc limit $sl");
-                    break;  
-                default:
-                    $data = $this->Model->fetch("SELECT * from tb_users order by id desc limit 25");
+                $sql = "update tb_users set ho_ten='$ho_ten' , gioi_tinh='$gioi_tinh', ngay_sinh='$ngay_sinh', sdt='$sdt', email='$email', password='$password', dia_chi='$dia_chi', anh='$anh' where id='$id'";
+                $this->Model->execute($sql);
+                echo "<meta http-equiv='refresh' content='0; URL=index.php?ctrl=users/Customer'>";
                 break;
-            }
 
-            
-            include "views/users/Customer.php";
+            case 'search':
+                $sr = $_POST['search'] ?? "";
+                $data = $this->Model->fetch("select * from tb_users where ho_ten like '%$sr%'  OR sdt like '%$sr%' OR email like '%$sr%' OR dia_Chi like '%$sr%' order by id desc limit 25");
+                include "views/users/Customer.php";
+                break;
+            case 'select':
+                $sl = isset($_GET['sl']) ? $_GET['sl'] : "";
+                $data = $this->Model->fetch("select * from tb_users order by id desc limit $sl");
+                include "views/users/Customer.php";
+                break;
+            default:
+                $data = $this->Model->fetch("SELECT * from tb_users order by id desc limit 25");
+                include "views/users/Customer.php";
+                break;
         }
+
+
     }
-    new Customer();
+}
+
+new Customer();
 
 ?>

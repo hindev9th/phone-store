@@ -6,7 +6,7 @@
         </h1>
         <ol class="breadcrumb">
             <li class="active">
-                <i class="fa fa-user"></i> Người dùng/Danh sách
+                <i class="fa fa-user"></i> Người dùng/Danh sách khách hàng
             </li>
         </ol>
     </div>
@@ -55,7 +55,7 @@
                         <td>Số ĐT</td>
                         <td>Email</td>
                         <td width="55px">
-                            <a href="index.php?ctrl=users/Customer&atc=add"
+                            <a href="index.php?ctrl=users/Customer&act=add"
                                class="btn btn-primary btn-sm" style="width: 100%;">Thêm</a>
                         </td>
                     </tr>

@@ -44,11 +44,11 @@
                         <td width="40px">STT</td>
                         <td width="50px">Anh</td>
                         <td width="150px">Họ và Tên</td>
-                        <td >Giới tính</td>
+                        <td>Giới tính</td>
+                        <td>Ngày sinh</td>
                         <td>Email</td>
-                        <td>Username</td>
                         <td width="100px">
-                            <a href="index.php?ctrl=users/Account&atc=add"
+                            <a href="index.php?ctrl=users/Account&act=add"
                                class="btn btn-primary btn-sm" style="width: 100%;">Thêm</a>
                         </td>
                     </tr>
@@ -62,8 +62,8 @@
                         <td><img src="../public/Uplaod/Avatar/<?= $value['anh'] ?>" alt=""></td>
                         <td><?= $value['ho_ten'] ?></td>
                         <td><?= $value['gioi_tinh'] ?></td>
+                        <td><?= $value['ngay_sinh'] ?></td>
                         <td><?= $value['email'] ?></td>
-                        <td><?= $value['username'] ?></td>
                         <td>
                             <a href="index.php?ctrl=users/Account&act=edit&id=<?= $value['id'] ?>" class="btn btn-sm btn-success" style="width: 100%;">Xem</a>
                         </td>
