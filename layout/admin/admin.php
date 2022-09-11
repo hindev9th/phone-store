@@ -17,6 +17,7 @@
 
     <!-- Custom CSS -->
     <link href="../public/admin/css/sb-admin.css" rel="stylesheet">
+    <link href="../public/admin/css/style.css" rel="stylesheet">
 
     <!-- Morris Charts CSS -->
     <link href="../public/admin/css/plugins/morris.css" rel="stylesheet">

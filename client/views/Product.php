@@ -8,7 +8,10 @@
         </div>
     </div>
 </div>
-<?php if (isset($_GET['id'])) { ?>
+<?php if (isset($_GET['id'])) {
+    $total_new = $data['gia_giam'];
+    $total_old = $data['gia'];
+    $percent = round( $total_old/($total_old+$total_new)*100 );?>
     <div class="content-wraper">
         <div class="container">
             <div class="row single-product-area">
@@ -76,9 +79,12 @@
                                 </ul>
                             </div>
                             <div class="price-box pt-20">
-                            <span class="new-price new-price-2">
-                                <?php echo currency_format($data['gia']) ?>
-                            </span>
+                                <?php if ($total_new > 0) : ?>
+                                    <span class="new-price text-danger"><?php echo currency_format($total_new) ?></span>
+                                    <span class="old-price" style="text-decoration: line-through;"><?php echo currency_format($total_old) ?></span>
+                                <?php else: ?>
+                                    <span class="new-price"><?php echo currency_format($total_old) ?></span>
+                                <?php endif; ?>
                             </div>
                             <div class="product-desc">
                                 <p>

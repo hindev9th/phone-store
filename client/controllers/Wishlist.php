@@ -23,7 +23,6 @@
                         break;
                 }
 
-
                 include "client/views/Wishlist.php";
             }else{
                 include "client/views/Login_register.php";

@@ -36,13 +36,16 @@
                         <span>Sản phẩm nổi bật</span>
                     </h2>
                     <ul class="li-sub-category-list">
-                        <li class="active"><a href="?ctrl=Product_List&act=spnb">Xem thêm</a></li>
+                        <li class="active"><a href="?ctrl=Product_List">Xem thêm</a></li>
                     </ul>
                 </div>
                 <div class="row">
                     <div class="product-active owl-carousel">
                         <?php foreach ($data_noi_bat as $val_nb) {
-                            $check_DM = $this->Model->fetchOne("select * from danh_muc where id = '" . $val_nb['id_dm'] . "'"); ?>
+                            $check_DM = $this->Model->fetchOne("select * from danh_muc where id = '" . $val_nb['id_dm'] . "'");
+                            $total_new = $val_nb['gia_giam'];
+                            $total_old = $val_nb['gia'];
+                            $percent = round( $total_old/($total_old+$total_new)*100 );?>
                             <div class="col-lg-12">
                                 <!-- single-product-wrap start -->
                                 <div class="single-product-wrap">
@@ -51,7 +54,11 @@
                                             <img src="public/Upload/Products/<?php echo $val_nb['anh'] ?>"
                                                  alt="Li's Product Image">
                                         </a>
-
+                                        <?php if ($total_new > 0) :?>
+                                            <span class="sticker bg-danger"><?= '-'.$percent.'%' ?></span>
+                                        <?php else: ?>
+                                            <span class="sticker">Hot</span>
+                                        <?php endif; ?>
                                     </div>
                                     <div class="product_desc">
                                         <div class="product_desc_info">
@@ -80,8 +87,12 @@
                                                    href="?ctrl=Product<?php echo '&id=' . $val_nb['id_loai'] ?>"><?php echo $val_nb['ten_sp'] . " - " . $val_nb['loai'] ?></a>
                                             </h4>
                                             <div class="price-box">
-
-                                                <span class="new-price"><?php echo currency_format($val_nb['gia']) ?></span>
+                                                <?php if ($val_nb['gia_giam'] > 0) : ?>
+                                                    <span class="new-price text-danger"><?php echo currency_format($total_new) ?></span>
+                                                    <span class="old-price"><?php echo currency_format($total_old) ?></span>
+                                                <?php else: ?>
+                                                    <span class="new-price"><?php echo currency_format($total_old) ?></span>
+                                                <?php endif; ?>
                                             </div>
 
                                         </div>
@@ -125,7 +136,10 @@
                 <div class="row">
                     <div class="product-active owl-carousel">
                         <?php foreach ($data_sp_moi as $val_new) {
-                            $check_DM = $this->Model->fetchOne("select * from danh_muc where id = '" . $val_new['id_dm'] . "'"); ?>
+                            $check_DM = $this->Model->fetchOne("select * from danh_muc where id = '" . $val_new['id_dm'] . "'");
+                            $total_new = $val_new['gia_giam'];
+                            $total_old = $val_new['gia'];
+                            $percent = round( $total_old/($total_old+$total_new)*100 );?>
                             <div class="col-lg-12">
                                 <div class="single-product-wrap">
                                     <div class="product-image">
@@ -133,7 +147,12 @@
                                             <img src="public/Upload/Products/<?php echo $val_new['anh'] ?>"
                                                  alt="Li's Product Image">
                                         </a>
-                                        <span class="sticker">Mới</span>
+
+                                        <?php if ($total_new > 0) :?>
+                                            <span class="sticker bg-danger"><?= '-'.$percent.'%' ?></span>
+                                        <?php else: ?>
+                                            <span class="sticker">Mới</span>
+                                        <?php endif; ?>
                                     </div>
                                     <div class="product_desc">
                                         <div class="product_desc_info">
@@ -163,7 +182,12 @@
                                             </h4>
 
                                             <div class="price-box">
-                                                <span class="new-price"><?php echo currency_format($val_new['gia']) ?></span>
+                                                <?php if ($val_new['gia_giam'] > 0) : ?>
+                                                    <span class="new-price text-danger"><?php echo currency_format($total_new) ?></span>
+                                                    <span class="old-price"><?php echo currency_format($total_old) ?></span>
+                                                <?php else: ?>
+                                                    <span class="new-price"><?php echo currency_format($total_old) ?></span>
+                                                <?php endif; ?>
                                             </div>
 
                                         </div>
@@ -228,7 +252,10 @@
 
                         <div class="row">
                             <div class="product-active owl-carousel">
-                                <?php foreach ($getData as $val_sp) { ?>
+                                <?php foreach ($getData as $val_sp) {
+                                    $total_new = $val_sp['gia_giam'];
+                                    $total_old = $val_sp['gia'];
+                                    $percent = round( $total_old/($total_old+$total_new)*100 );?>
                                     <div class="col-lg-12">
                                         <div class="single-product-wrap">
                                             <div class="product-image">
@@ -236,7 +263,9 @@
                                                     <img src="public/Upload/Products/<?php echo $val_sp['anh'] ?>"
                                                          alt="Li's Product Image">
                                                 </a>
-                                                <span class="sticker">Mới</span>
+                                                <?php if ($total_new > 0) :?>
+                                                    <span class="sticker bg-danger"><?= '-'.$percent.'%' ?></span>
+                                                <?php endif; ?>
                                             </div>
                                             <div class="product_desc">
                                                 <div class="product_desc_info">
@@ -266,7 +295,12 @@
                                                     </h4>
 
                                                     <div class="price-box">
-                                                        <span class="new-price"><?php echo currency_format($val_sp['gia']) ?></span>
+                                                        <?php if ($total_new > 0) : ?>
+                                                            <span class="new-price text-danger"><?php echo currency_format($total_new) ?></span>
+                                                            <span class="old-price"><?php echo currency_format($total_old) ?></span>
+                                                        <?php else: ?>
+                                                            <span class="new-price"><?php echo currency_format($total_old) ?></span>
+                                                        <?php endif; ?>
                                                     </div>
 
                                                 </div>

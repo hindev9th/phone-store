@@ -32,7 +32,6 @@
                     break;
                 
             }
-            
 
             include "client/views/Cart.php";
         }

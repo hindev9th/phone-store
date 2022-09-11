@@ -68,7 +68,10 @@
                                     <?php $sum = 0;
                                     if(isset($_SESSION['gio_hang'])){
                                         foreach($_SESSION['gio_hang'] as $id_sp => $sl){ 
-                                            $data_sp = $this->Model->fetchOne("select * from sp_view where id_loai = '$id_sp'");?>
+                                            $data_sp = $this->Model->fetchOne("select * from sp_view where id_loai = '$id_sp'");
+                                            $total_new = $data_sp['gia_giam'];
+                                            $total_old = $data_sp['gia'];
+                                            $percent = round($total_old / ($total_old + $total_new) * 100);?>
                                     <tr class="cart_item">
                                         <td class="cart-product-name">
                                             <?php echo $data_sp['ten_sp']."-".$data_sp['loai']."-".$data_sp['ten_mau'] ?>
@@ -77,10 +80,10 @@
                                             </strong>
                                         </td>
                                         <td class="cart-product-total"><span class="amount">
-                                                <?php echo currency_format($data_sp['gia'] * $sl) ?>
+                                                <?php echo currency_format(($total_new > 0 ? $total_new : $total_old) * $sl) ?>
                                             </span></td>
                                     </tr>
-                                    <?php $sum +=$data_sp['gia'] * $sl; } ?>
+                                    <?php $sum +=($total_new > 0 ? $total_new : $total_old) * $sl; } ?>
                                     <?php } ?>
 
                                 </tbody>

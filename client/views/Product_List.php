@@ -65,7 +65,10 @@
                                     <div class="product-area shop-product-area">
                                         <div class="row">
                                             <?php foreach($data as $values){ 
-                                                $dm = $this->Model->fetchOne("select * from danh_muc where id = '".$values['id_dm']."'");?>
+                                                $dm = $this->Model->fetchOne("select * from danh_muc where id = '".$values['id_dm']."'");
+                                                $total_new = $values['gia_giam'];
+                                                $total_old = $values['gia'];
+                                                $percent = round( $total_old/($total_old+$total_new)*100 );?>
                                             <div class="col-lg-4 col-md-4 col-sm-6 mt-40">
                                                 <!-- single-product-wrap start -->
                                                 <div class="single-product-wrap">
@@ -98,7 +101,12 @@
                                                                     href="?ctrl=Product<?php echo '&id='.$values['id_loai'] ?>"><?php echo $values['ten_sp'] ?></a>
                                                             </h4>
                                                             <div class="price-box">
-                                                                <span class="new-price"><?php echo currency_format($values['gia']) ?></span>
+                                                                <?php if ($total_new > 0) : ?>
+                                                                    <span class="new-price text-danger"><?php echo currency_format($total_new) ?></span>
+                                                                    <span class="old-price"><?php echo currency_format($total_old) ?></span>
+                                                                <?php else: ?>
+                                                                    <span class="new-price"><?php echo currency_format($total_old) ?></span>
+                                                                <?php endif; ?>
                                                             </div>
                                                         </div>
                                                         <div class="add-actions">

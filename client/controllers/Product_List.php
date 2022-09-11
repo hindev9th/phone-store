@@ -30,7 +30,7 @@
                             $data = $this->Model->fetch("select * from sp_view where Sale > 0 GROUP BY ma_sp order by gia DESC limit $pagi,$nb_item ");
                             break;
                         default:
-                            $data = $this->Model->fetch("select * from sp_view where Sale > 0 GROUP BY ma_sp order by Sale DESC limit $pagi,$nb_item ");
+                            $data = $this->Model->fetch("select * from sp_view where Sale > 0 GROUP BY ma_sp order by da_ban DESC limit $pagi,$nb_item ");
                             break;
                     }
                     break;

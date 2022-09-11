@@ -52,32 +52,56 @@
                         <h4 style="border-bottom: 1px solid rgba(0,0,0,0.1)">Mô tả sản phẩm</h4>
                         <div class="row">
                             <?php if (isset($data)) : ?>
-                            <div id="presence-list-container" class="hidden" style="display: none"></div>
-                            <div class="card-body" id="sub-cart-mTa">
-                                <textarea name="mo_ta" id="noi_dung_mo_ta" class="form-control"><?= $data['mo_ta'] ?></textarea>
-                            </div>
+                                <div id="presence-list-container" class="hidden" style="display: none"></div>
+                                <div class="card-body" id="sub-cart-mTa">
+                                    <textarea name="mo_ta" id="noi_dung_mo_ta"
+                                              class="form-control"><?= $data['mo_ta'] ?></textarea>
+                                </div>
                             <?php else: ?>
-                            <div id="presence-list-container" class="hidden" style="display: none"></div>
-                            <div class="card-body" id="sub-cart-mTa">
-                                <textarea name="mo_ta" id="noi_dung_mo_ta" class="form-control"></textarea>
-                            </div>
+                                <div id="presence-list-container" class="hidden" style="display: none"></div>
+                                <div class="card-body" id="sub-cart-mTa">
+                                    <textarea name="mo_ta" id="noi_dung_mo_ta" class="form-control"></textarea>
+                                </div>
                             <?php endif; ?>
                         </div>
-                        <h4 style="border-bottom: 1px solid rgba(0,0,0,0.1)">Images</h4>
-                        <div class="row" id="box-img">
-                            <?php if (isset($data_img)) :
-                                foreach ($data_img as $data) {?>
-                                <div class="col-md-2">
-                                    <img src="../public/Upload/Products/<?= $data['anh'] ?>" alt="" width="100%">
-                                    <input type="file" name="images[]" require style="width:100%;  height:100px; margin-top:10px ; "/>
-                                </div>
-                            <?php  }
-                            endif; ?>
-                            <div class="col-md-2">
-                                <img src="../public/Upload/Products/" alt="" width="100%">
-                                <input type="file" name="images[]" require style="width:100%;  height:100px; margin-top:10px ; "/>
+
+                        <div class="row" style="border-bottom: 1px solid rgba(0,0,0,0.1);margin-top: 20px">
+                            <div class="col-md-6">
+                                <h4 class="text-secondary">Anh</h4>
+                            </div>
+                            <div class="col-md-6 text-right">
+                                <span class="btn btn-primary" id="btn-them-anh">Thêm ảnh</span>
                             </div>
                         </div>
+                        <?php if (isset($data_img)) :
+                            foreach ($data_img as $data) { ?>
+                                <div class="col-md-2" style="margin-top: 15px;">
+                                    <img src="../public/Upload/Products/<?= $data['anh'] ?>" alt="" width="100%">
+                                    <input type="hidden" name="images_sp[]" value="<?= $data['anh'] ?>">
+                                    <input type="file" name="images[]" require
+                                           style="width:100%;  height:100px; margin-top:10px ; "/>
+                                    <div id="remove-img" class="remove-img position-absolute ab-top ab-right pr-2">
+                                        <a class="btn text-danger btn-dl-loai"
+                                           id="btn-dl-anh" title="Xóa ảnh" data-post=""> Xóa ảnh
+                                            <i class="fa fa-minus-circle "></i></a>
+                                    </div>
+                                </div>
+                            <?php }
+                        endif; ?>
+                        <div class="row" id="box-img">
+                            <div class="col-md-2" style="margin-top: 15px;">
+                                <img src="../public/Upload/Products/" alt="" width="100%">
+                                <input type="hidden" name="images_sp[]" value="">
+                                <input type="file" name="images[]" require
+                                       style="width:100%;  height:100px; margin-top:10px ; "/>
+                                <div id="remove-img" class="remove-img position-absolute ab-top ab-right pr-2">
+                                    <a class="btn text-danger btn-dl-loai"
+                                       id="btn-dl-anh" title="Xóa ảnh" data-post="">Xóa ảnh
+                                        <i class="fa fa-minus-circle "></i></a>
+                                </div>
+                            </div>
+                        </div>
+
                         <div class="row" style="border-bottom: 1px solid rgba(0,0,0,0.1)">
                             <div class="col-md-6">
                                 <h4 class="text-secondary">Loại</h4>
@@ -107,39 +131,6 @@
                                     <div class="col-md-1">
                                         <span>Xóa</span>
                                     </div>
-                                </div>
-                                <div id="box-loai">
-                                    <div class="row" style="margin-bottom:10px;">
-                                        <div class="col-md-3">
-                                            <input type="text" name="loai[]" value="" class="form-control">
-                                        </div>
-                                        <div class="col-md-1">
-                                            <input type="color" name="ma_mau[]" class="form-control">
-                                        </div>
-                                        <div class="col-md-2">
-                                            <input type="text" name="ten_mau[]" class="form-control">
-                                        </div>
-                                        <div class="col-md-2">
-                                            <input type="number" name="so_luong[]" required class="form-control">
-                                        </div>
-                                        <div class="col-md-3">
-                                            <input type="number" name="gia[]" required class="form-control">
-                                        </div>
-                                        <div class="col-md-1">
-                                            <span class="btn text-danger btn-xoa-loai" value="123456789"><i class="fa fa-minus-square"
-                                                                                          aria-hidden="true"></i></span>
-                                        </div>
-                                    </div>
-                                    <script>
-                                        $('.btn-xoa-loai').click(function () {
-                                            var id_val = $(this).attr('value');
-                                            $.ajax({
-                                                url:"?ctrl=products/Add&act=delete&id="+id_val
-
-                                            });
-                                            // $(this).closest('.row').remove();
-                                        });
-                                    </script>
                                 </div>
                                 <?php if (isset($data_loai)) {
                                 foreach ($data_loai
@@ -177,12 +168,41 @@
                                         $('.btn-xoa-loai').click(function () {
                                             var id = $(this).attr('value');
                                             $.ajax({
-                                                url:"?ctrl=products/Add"
+                                                url: "?ctrl=products/Add"
                                             });
                                             $(this).closest('.row').remove();
                                         });
                                     </script>
                                 <?php } ?>
+                                <div id="box-loai">
+                                    <div class="row" style="margin-bottom:10px;">
+                                        <div class="col-md-3">
+                                            <input type="text" name="loai[]" value="" class="form-control">
+                                        </div>
+                                        <div class="col-md-1">
+                                            <input type="color" name="ma_mau[]" class="form-control">
+                                        </div>
+                                        <div class="col-md-2">
+                                            <input type="text" name="ten_mau[]" class="form-control">
+                                        </div>
+                                        <div class="col-md-2">
+                                            <input type="number" name="so_luong[]" required class="form-control">
+                                        </div>
+                                        <div class="col-md-3">
+                                            <input type="number" name="gia[]" required class="form-control">
+                                        </div>
+                                        <div class="col-md-1">
+                                            <span class="btn text-danger btn-xoa-loai" value="123456789"><i
+                                                        class="fa fa-minus-square"
+                                                        aria-hidden="true"></i></span>
+                                        </div>
+                                    </div>
+                                    <script>
+                                        $('.btn-xoa-loai').click(function () {
+                                            $(this).closest('.row').remove();
+                                        });
+                                    </script>
+                                </div>
                             </div>
                         </div>
 
@@ -203,8 +223,12 @@
         };
 
         var loai = $('#box-loai').html();
+        var anh = $('#box-img').html();
         $('#btn-them').click(function () {
             $('#box-loai').append(loai);
+        });
+        $('#btn-them-anh').click(function () {
+            $('#box-img').append(anh);
         });
     </script>
 </div>

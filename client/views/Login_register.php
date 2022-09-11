@@ -20,11 +20,11 @@
                                 <div class="row">
                                     <div class="col-md-12 col-12 mb-20">
                                         <label>Email*</label>
-                                        <input class="mb-0" name="Email" type="email" required placeholder="Email">
+                                        <input class="mb-0" name="email" type="email" required placeholder="Email">
                                     </div>
                                     <div class="col-12 mb-20">
                                         <label>Mật khẩu*</label>
-                                        <input class="mb-0" name="Password" type="password" required placeholder="Mật khẩu">
+                                        <input class="mb-0" name="password" type="password" required placeholder="Mật khẩu">
                                     </div>
                                     <div class="col-md-8">
                                         <div class="check-box d-inline-block ml-0 ml-md-2 mt-10">
