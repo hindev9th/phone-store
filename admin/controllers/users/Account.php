@@ -42,7 +42,7 @@ class Account extends Controller
                 }
                 break;
             case 'delete':
-                $this->Model->execute("delete from tb_admin where id=$id");
+                $this->Model->execute("delete from tb_admin where id='$id'");
                 echo "<meta http-equiv='refresh' content='0; URL=index.php?ctrl=users/Account'>";
                 break;
             case 'edit':

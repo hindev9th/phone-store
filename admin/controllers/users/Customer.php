@@ -67,7 +67,10 @@ class Customer extends Controller
                 $this->Model->execute($sql);
                 echo "<meta http-equiv='refresh' content='0; URL=index.php?ctrl=users/Customer'>";
                 break;
-
+            case 'delete':
+                $this->Model->execute("delete from tb_users where id='$id'");
+                echo "<meta http-equiv='refresh' content='0; URL=index.php?ctrl=users/Customer'>";
+                break;
             case 'search':
                 $sr = $_POST['search'] ?? "";
                 $data = $this->Model->fetch("select * from tb_users where ho_ten like '%$sr%'  OR sdt like '%$sr%' OR email like '%$sr%' OR dia_Chi like '%$sr%' order by id desc limit 25");
