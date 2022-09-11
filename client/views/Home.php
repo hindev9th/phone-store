@@ -248,6 +248,9 @@
                             <h2>
                                 <span><?= $val_danh_muc['ten_dm'] ?></span>
                             </h2>
+                            <ul class="li-sub-category-list">
+                                <li class="active"><a href="?ctrl=Product_List&act=sp&dm=<?= $val_danh_muc['id'] ?>">Xem thêm</a></li>
+                            </ul>
                         </div>
 
                         <div class="row">

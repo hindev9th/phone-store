@@ -51,18 +51,24 @@ class Login_register extends Controller
                 } else {
                     if ($password == $re_password) {
                         $password = md5($re_password);
-                        $this->Model->execute("INSERT into `tb_users`(`id`, `ho_ten`, `gioi_tinh`, `nam_sinh`, `sdt`, `email`, `password`, `dia_chi`, `anh`) 
-                                                    values('','$ho_ten','','','','$email','$password','','')");
-                        $customer = array(
-                            'id' => $check['id'],
-                            'email' => $email,
-                            'ho_ten' => $check['ho_ten']
-                        );
-                        $_SESSION['customer'] = $customer;
-                        echo "<meta http-equiv='refresh' content='0; URL=?ctrl=users/account'>";
+                        $sql = "INSERT INTO `tb_users`(`id`, `ho_ten`, `gioi_tinh`, `ngay_sinh`, `sdt`, `email`, `password`, `dia_chi`, `anh`) 
+                                VALUES ('','$ho_ten','','','','$email','$password','','');";
+                        $this->Model->execute($sql);
+                        $check = $this->Model->fetchOne("select * from tb_users where email = '$email'");
+                        if($check['email'] == $email ){
+                            $customer = array(
+                                'id' => $check['id'],
+                                'email' => $email,
+                                'ho_ten' => $check['ho_ten']
+                            );
+                            $_SESSION['customer'] = $customer;
+                            echo "<meta http-equiv='refresh' content='0; URL=?'>";
+                        }else{
+                            echo "<script>alert('Lỗi đăng ký không thành công!')</script> ";
+                        }
+
                     } else {
-                        ?>
-                        <script>alert("Mật khẩu không khớp nhau!")</script> <?php
+                        echo "<script>alert('Mật khẩu không khớp nhau!')</script> ";
                         echo "<meta http-equiv='refresh' content='0; URL=?ctrl=Login_register'>";
                     }
                 }
