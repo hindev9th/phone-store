@@ -143,7 +143,7 @@
                             <div class="col-lg-12">
                                 <div class="single-product-wrap">
                                     <div class="product-image">
-                                        <a href="?ctrl=product<?php echo '&id=' . $val_new['id_loai'] ?>">
+                                        <a href="?ctrl=Product<?php echo '&id=' . $val_new['id_loai'] ?>">
                                             <img src="public/Upload/Products/<?php echo $val_new['anh'] ?>"
                                                  alt="Li's Product Image">
                                         </a>
@@ -178,7 +178,7 @@
                                                 </div>
                                             </div>
                                             <h4><a class="product_name"
-                                                   href="?ctrl=product<?php echo '&id=' . $val_new['id_loai'] ?>"><?php echo $val_new['ten_sp'] . " - " . $val_new['loai'] ?></a>
+                                                   href="?ctrl=Product<?php echo '&id=' . $val_new['id_loai'] ?>"><?php echo $val_new['ten_sp'] . " - " . $val_new['loai'] ?></a>
                                             </h4>
 
                                             <div class="price-box">
@@ -262,7 +262,7 @@
                                     <div class="col-lg-12">
                                         <div class="single-product-wrap">
                                             <div class="product-image">
-                                                <a href="?ctrl=product<?php echo '&id=' . $val_sp['id_loai'] ?>">
+                                                <a href="?ctrl=Product<?php echo '&id=' . $val_sp['id_loai'] ?>">
                                                     <img src="public/Upload/Products/<?php echo $val_sp['anh'] ?>"
                                                          alt="Li's Product Image">
                                                 </a>
@@ -294,7 +294,7 @@
                                                         </div>
                                                     </div>
                                                     <h4><a class="product_name"
-                                                           href="?ctrl=product<?php echo '&id=' . $val_sp['id_loai'] ?>"><?php echo $val_new['ten_sp'] . " - " . $val_new['loai'] ?></a>
+                                                           href="?ctrl=Product<?php echo '&id=' . $val_sp['id_loai'] ?>"><?php echo $val_new['ten_sp'] . " - " . $val_new['loai'] ?></a>
                                                     </h4>
 
                                                     <div class="price-box">
