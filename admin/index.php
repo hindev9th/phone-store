@@ -7,7 +7,7 @@
     include "../config/Token.php";
 
     if(isset($_GET['act']) && $_GET['act'] =='logout'){
-        unset($_SESSION['account']);
+        unset($_SESSION['admin']);
     }
 
     class index extends Controller{
