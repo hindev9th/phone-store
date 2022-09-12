@@ -142,10 +142,10 @@
 					<img src ="..\public\admin\img\gp.png">
 				</div>
 				<form id="login" class="input-group" method="post">
-					<input type="email" name="email" class="input-field" placeholder= "Email" repuired >
-					<input type="password" name="password" class="input-field" placeholder= "Mật khẩu" repuired >
+					<input type="email" name="email" class="input-field" required placeholder= "Email" />
+					<input type="password" name="password" class="input-field" required placeholder= "Mật khẩu" />
 					<input type="checkbox" class = "chech-box"><Span>Ghi nhớ mật khẩu</span>
-					<input type="submit" name="sb_Dang_nhap" class="submit-btn btn-DN" value="Đăng nhập">
+					<input type="submit" name="sb_Dang_nhap" class="submit-btn btn-DN" value="Đăng nhập" />
 				</form>
 				<!-- <form id="register" class="input-group" metod="post">
 					<input type="text" name ="name" class="input-field" placeholder= "Họ và tên" repuired>
